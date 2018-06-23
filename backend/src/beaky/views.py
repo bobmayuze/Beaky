@@ -13,5 +13,17 @@ def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 
 
-def foo(request, page=1):
-    return HttpResponse("Hello World")
+def signUp(request):
+    if request.method == 'GET':
+        return HttpResponse("Bad request")
+    req_body = json.loads(request.body.decode('utf-8'))
+    try:
+        username = req_body["username"]
+        password = req_body["password"]
+        email = req_body["email"]
+        labels = req_body["labels"]
+        services.signUp(username, password, email, labels)
+        return HttpResponse("Account created successfully")
+    except Exception as e:
+        print(e)
+        return HttpResponse("Bad request")
