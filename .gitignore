@@ -108,3 +108,4 @@ JupyterNotebook/src/labNotebooks
 .DS_Store
 /db
 /mongoDb
+backend/db
