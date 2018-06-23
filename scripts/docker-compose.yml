@@ -1,0 +1,28 @@
+version: '2'
+
+services: 
+  django:
+    container_name: django_server
+    restart: always
+    build: ../src
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../src:/usr/src/app
+
+  mongo_db:
+    container_name: mongo
+    image: 'aashreys/mongo-auth'
+    environment:
+      - AUTH=yes 
+      - MONGODB_ADMIN_USER=mongoAdmin
+      - MONGODB_ADMIN_PASS=mongoAdminPass
+      - MONGODB_APPLICATION_DATABASE=ScicatDB
+      - MONGODB_APPLICATION_USER=mongoApp
+      - MONGODB_APPLICATION_PASS=mongoAppPass
+    ports:
+      - "27017:27017"
+    volumes:
+      - ../db:/data/db
