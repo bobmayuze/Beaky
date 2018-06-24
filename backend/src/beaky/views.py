@@ -89,3 +89,15 @@ def searchQuestionByLabels(request):
     except Exception as e:
         print(e)
         return HttpResponse("Bad request")
+
+def getIds(request):
+    result = services.getIdListOfQuestions()
+    return HttpResponse(
+        json.dumps(result, ensure_ascii=False),
+        content_type='application/json')
+
+def getAllFinishedQuestions(request):
+    result = services.getAllQuestions()
+    return HttpResponse(
+        json.dumps(result, ensure_ascii=False),
+        content_type='application/json')

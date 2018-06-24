@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="header">
     </div>
     <router-view/>
+    <a href="#/main"><img src="beaky.png" alt="Skyscraper"></a>
   </div>
+
 </template>
 
 <style>
@@ -28,4 +28,9 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.header {
+  padding: 2%;
+}
 </style>
+

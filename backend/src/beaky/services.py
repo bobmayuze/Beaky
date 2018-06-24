@@ -95,6 +95,28 @@ def getQuestionById(question_id):
     returnQuestion["_id"] = str(returnQuestion["_id"])
     return returnQuestion
 
+def getIdListOfQuestions():
+    client = MongoClient('mongo_db', 27017)
+    db = client["ScicatDB"]
+    db.authenticate('mongoApp', 'mongoAppPass')
+    result = db.Question.find()
+    Id_list = []
+    for record in result:
+        Id_list.append(str(record["_id"]))
+    return Id_list
+
+def getAllQuestions():
+    client = MongoClient('mongo_db', 27017)
+    db = client["ScicatDB"]
+    db.authenticate('mongoApp', 'mongoAppPass')
+    result = db.Question.find({"status":"close"})
+    questions = []
+    for record in result:
+        record["_id"] = str(record["_id"])
+        questions.append(record)
+    return questions
+
+
 
 
 def getQuestionsByQuery(args):
